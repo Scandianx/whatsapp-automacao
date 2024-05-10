@@ -1,4 +1,4 @@
-Claro! Abaixo está um exemplo de conteúdo para um arquivo `README.md` que descreve a automação desenvolvida com Puppeteer para interações automatizadas no WhatsApp.
+
 
 ---
 
