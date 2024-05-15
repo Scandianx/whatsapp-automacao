@@ -1,11 +1,12 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 function espera(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function automacaoWhatsApp() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: false,  userDataDir: './user_data'});
 
     try {
         let c = 0;
@@ -19,11 +20,14 @@ async function automacaoWhatsApp() {
 
         await espera(30000);
         console.log("Página carregada!");
+        
+        
 
         let conversaSelector;
         let seletorNaoLidas;
         let j = 1;
         while (c < 30) {
+            
             if (c % 2 == 0) {
                 j = 3;
 
@@ -106,6 +110,8 @@ async function automacaoWhatsApp() {
                                             const sendButton = await page.waitForSelector('button[data-tab="11"][aria-label="Enviar"]');
                                             await sendButton.click();
                                             console.log('Botão de envio clicado com sucesso!');
+                                            await page.keyboard.press('Escape');
+                                            
                                         }
                                         else {
                                             console.log('Botão de envio nao encontrado');
